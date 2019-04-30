@@ -1,10 +1,8 @@
 import React from 'react';
-import { Text, View, Alert, FlatList } from 'react-native';
+import { Text, View, Alert, FlatList, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import firebase, { db } from '../Services/Firebase';
 import APIkeys from '../Constants/APIkeys';
-import { database } from 'firebase';
-
 
 let data= [];
 
@@ -61,7 +59,7 @@ export default class SpeakersScreen extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={styles.container}>
         <FlatList
           data = {this.state.data}
           renderItem={({ item }) =>
@@ -76,4 +74,11 @@ export default class SpeakersScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   paddingTop: 50
+  }
+})
 
