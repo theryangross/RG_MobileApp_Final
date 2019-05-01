@@ -66,6 +66,7 @@ export default class SpeakersScreen extends React.Component {
             <ListItem
             title={item.Name}
             subtitle={`${item.Email}\n${item.School}`}
+            bottomDivider={true}
             />
           }
           keyExtractor={item => item.id}
