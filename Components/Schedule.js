@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Alert, FlatList, StyleSheet } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { List, ListItem } from 'react-native-elements';
 import firebase, { db } from '../Services/Firebase';
 import APIkeys from '../Constants/APIkeys';
 
@@ -66,8 +66,8 @@ export default class ScheduleScreen extends React.Component {
           data = {this.state.data}
           renderItem={({ item }) =>
             <ListItem
-            title={item.Day}
-            subtitle={`${item.Date} ${item.Time}\n${item.Name}`}
+            title={`${item.Day} ${item.Date}`}
+            subtitle={`${item.Time}\n${item.Name}`}
             bottomDivider={true}
             />
           }
@@ -82,7 +82,9 @@ export default class ScheduleScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   paddingTop: 50
+   paddingTop: 50,
+   backgroundColor: '#483d8b',
+   //color: '#ffffff',
   }
 })
 

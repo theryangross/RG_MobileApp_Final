@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Alert, FlatList, StyleSheet } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { List, ListItem, withTheme } from 'react-native-elements';
 import firebase, { db } from '../Services/Firebase';
 import APIkeys from '../Constants/APIkeys';
 
@@ -62,6 +62,7 @@ export default class SpeakersScreen extends React.Component {
       <View style={styles.container}>
         <FlatList
           data = {this.state.data}
+          keyExtractor={item => item.id}
           renderItem={({ item }) =>
             <ListItem
             title={item.Name}
@@ -69,7 +70,6 @@ export default class SpeakersScreen extends React.Component {
             bottomDivider={true}
             />
           }
-          keyExtractor={item => item.id}
         />
       </View>
     );
@@ -79,7 +79,9 @@ export default class SpeakersScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   paddingTop: 50
+   paddingTop: 50,
+   backgroundColor: '#483d8b',
+   color: '#ffffff',
   }
 })
 
