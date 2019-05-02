@@ -28,3 +28,5 @@ export default createAppContainer(
   )
 )
 
+//Tab Navigation from https://reactnavigation.org/docs/en/tab-based-navigation.html
+

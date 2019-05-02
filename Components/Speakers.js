@@ -85,3 +85,4 @@ const styles = StyleSheet.create({
   }
 })
 
+//FlatList from https://github.com/ReactNativeSchool/react-native-flatlist-demo/blob/master/FlatListDemo.js and https://www.youtube.com/watch?v=r-ENJLGrd3s and https://docs.expo.io/versions/latest/react-native/using-a-listview/
