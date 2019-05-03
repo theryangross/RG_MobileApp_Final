@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Alert, FlatList, StyleSheet } from 'react-native';
-import { ListItem, withTheme } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import firebase, { db } from '../Services/Firebase';
 import APIkeys from '../Constants/APIkeys';
 
