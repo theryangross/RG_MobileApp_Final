@@ -27,6 +27,7 @@ export default class ScheduleScreen extends React.Component {
   requestData =() => {
     let sessions = db.collection("Schedule");
 
+    //Promise. Talking to firebase, will promise to "keep the door open" so that when the data is ready it will take it in cuz of the .get function
     sessions.get()
       .then(query => {
         if (!query.empty) {
