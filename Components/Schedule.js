@@ -4,21 +4,24 @@ import { List, ListItem } from 'react-native-elements';
 import firebase, { db } from '../Services/Firebase';
 import APIkeys from '../Constants/APIkeys';
 
+//this holds the data until it finishes because state won't let you append, once foreach is done it pushes the entire list to state to display
 let data= [];
 
 export default class ScheduleScreen extends React.Component {
+  //state cant append data
   state = {
     data: []
   }
 
+  //checks if database exsists
   componentDidMount()  {
     if (!firebase.apps.length) { firebase.initializeApp(APIkeys.FirebaseConfig);}
   }
-
+  //checks for the data
   componentWillMount() {
     this.requestData();
   }
-
+  //actually getting the data via foreach loop
   requestData =() => {
     let sessions = db.collection("Schedule");
 
@@ -27,6 +30,7 @@ export default class ScheduleScreen extends React.Component {
         if (!query.empty) {
           query.docs.forEach(doc => {
             let SD = this.sessionData(doc);
+            //pushes items to upper data function
             data.push(SD);
             console.log("Date: " + SD.Date);
             console.log("Day: " + SD.Day);
@@ -37,6 +41,7 @@ export default class ScheduleScreen extends React.Component {
       })
       .then(() => {
         this.setState({
+          //pushes items into state
           data
         })
       })
@@ -46,6 +51,7 @@ export default class ScheduleScreen extends React.Component {
 
   }
 
+  //parsing the data and pulling out the items, sends to requestData
   sessionData = (doc) => {
     const id = doc.id;
     const { Date, Day, Name, Time }= doc.data();
@@ -59,6 +65,8 @@ export default class ScheduleScreen extends React.Component {
     };
     return SessionData;
   }
+
+  //displaying data
   render() {
     return (
       <View style={styles.container}>
@@ -79,6 +87,7 @@ export default class ScheduleScreen extends React.Component {
   }
 }
 
+//styling
 const styles = StyleSheet.create({
   container: {
    flex: 1,
