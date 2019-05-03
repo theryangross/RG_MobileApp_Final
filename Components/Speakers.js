@@ -4,21 +4,26 @@ import { List, ListItem, withTheme } from 'react-native-elements';
 import firebase, { db } from '../Services/Firebase';
 import APIkeys from '../Constants/APIkeys';
 
+//this holds the data until it finishes because state won't let you append, once foreach is done it pushes the entire list to state to display
 let data= [];
 
 export default class SpeakersScreen extends React.Component {
+  //state cant append data
   state = {
     data: []
   }
 
+  //checks if database exsists
   componentDidMount()  {
     if (!firebase.apps.length) { firebase.initializeApp(APIkeys.FirebaseConfig);}
   }
 
+  //checks for the data
   componentWillMount() {
     this.requestData();
   }
 
+  //actually getting the data via foreach loop
   requestData =() => {
     let sessions = db.collection("Speakers");
 
@@ -27,6 +32,7 @@ export default class SpeakersScreen extends React.Component {
         if (!query.empty) {
           query.docs.forEach(doc => {
             let SD = this.sessionData(doc);
+            //pushes items to upper data function
             data.push(SD);
             console.log("Name: " + SD.Name);
             console.log("Email: " + SD.Email);
@@ -36,6 +42,7 @@ export default class SpeakersScreen extends React.Component {
       })
       .then(() => {
         this.setState({
+          //pushes items into state
           data
         })
       })
@@ -45,6 +52,7 @@ export default class SpeakersScreen extends React.Component {
 
   }
 
+  //parsing the data and pulling out the items, sends to requestData
   sessionData = (doc) => {
     const id = doc.id;
     const { Email, Name, School }= doc.data();
@@ -57,6 +65,8 @@ export default class SpeakersScreen extends React.Component {
     };
     return SessionData;
   }
+
+  //displaying data
   render() {
     return (
       <View style={styles.container}>
@@ -76,6 +86,7 @@ export default class SpeakersScreen extends React.Component {
   }
 }
 
+//styling
 const styles = StyleSheet.create({
   container: {
    flex: 1,
