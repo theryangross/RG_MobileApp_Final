@@ -15,13 +15,12 @@ export default createAppContainer(
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      //tabBarIcon: ({ focused, tintColor }) =>
-        //getTabBarIcon(navigation, focused, tintColor),
+      tabBarOptions: {
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      }
     }),
-    tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-    }
+    
   }
   )
 )
