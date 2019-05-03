@@ -23,3 +23,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+//map from https://docs.expo.io/versions/latest/sdk/map-view/
