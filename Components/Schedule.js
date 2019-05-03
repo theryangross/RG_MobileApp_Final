@@ -17,10 +17,12 @@ export default class ScheduleScreen extends React.Component {
   componentDidMount()  {
     if (!firebase.apps.length) { firebase.initializeApp(APIkeys.FirebaseConfig);}
   }
+
   //checks for the data
   componentWillMount() {
     this.requestData();
   }
+  
   //actually getting the data via foreach loop
   requestData =() => {
     let sessions = db.collection("Schedule");
